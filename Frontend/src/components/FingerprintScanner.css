@@ -1,0 +1,221 @@
+/* ---- Fingerprint Scanner ---- */
+.fp-scanner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: rgba(0, 245, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-med);
+}
+.fp-scanner--scanning {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px rgba(0, 245, 255, 0.15);
+}
+.fp-scanner--captured {
+  border-color: rgba(57, 255, 20, 0.5);
+  box-shadow: 0 0 24px rgba(57, 255, 20, 0.12);
+}
+.fp-scanner--compact { padding: 16px; gap: 12px; }
+
+/* Label */
+.fp-scanner__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.fp-scanner__label-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+/* Pad */
+.fp-pad-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fp-pad {
+  position: relative;
+  width: 180px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.fp-scanner--compact .fp-pad { width: 140px; height: 160px; }
+
+/* SVG icon */
+.fp-svg {
+  width: 80%;
+  height: 80%;
+  color: rgba(0, 245, 255, 0.25);
+  transition: color var(--transition-med);
+}
+.fp-scanner--scanning .fp-svg { color: rgba(0, 245, 255, 0.5); }
+.fp-scanner--captured .fp-svg { color: rgba(57, 255, 20, 0.3); }
+.fp-pad:hover .fp-svg { color: rgba(0, 245, 255, 0.4); }
+
+/* Corner brackets */
+.fp-corner {
+  position: absolute;
+  width: 18px; height: 18px;
+  border-color: var(--cyan);
+  border-style: solid;
+  border-width: 0;
+  animation: corner-flash 2s ease-in-out infinite;
+}
+.fp-corner--tl { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; border-radius: 2px 0 0 0; }
+.fp-corner--tr { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; border-radius: 0 2px 0 0; animation-delay: 0.2s; }
+.fp-corner--bl { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; border-radius: 0 0 0 2px; animation-delay: 0.4s; }
+.fp-corner--br { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; border-radius: 0 0 2px 0; animation-delay: 0.6s; }
+.fp-scanner--captured .fp-corner { border-color: var(--neon-green); }
+
+/* Laser */
+.fp-laser-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.fp-laser {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--cyan) 20%, var(--blue-bright) 50%, var(--cyan) 80%, transparent 100%);
+  animation: scan-laser 1.1s ease-in-out infinite;
+  top: 0;
+}
+.fp-laser-glow {
+  position: absolute;
+  left: 0; right: 0;
+  height: 20px;
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), rgba(0, 128, 255, 0.15), rgba(0, 245, 255, 0.1), transparent);
+  animation: scan-laser 1.1s ease-in-out infinite;
+  top: -9px;
+  filter: blur(4px);
+}
+
+/* Captured overlay */
+.fp-captured-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+.fp-captured-ring {
+  position: absolute;
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  border: 2px solid rgba(57, 255, 20, 0.6);
+  animation: ring-expand 1.5s ease-out infinite;
+}
+.fp-captured-ring--2 { animation-delay: 0.5s; }
+
+/* Idle prompt */
+.fp-idle-prompt {
+  position: absolute;
+  bottom: 8px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+}
+.fp-idle-prompt span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* Expansion rings */
+.fp-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  animation: ring-expand 2s ease-out infinite;
+  pointer-events: none;
+}
+.fp-ring--1 { width: 220px; height: 240px; animation-delay: 0s; }
+.fp-ring--2 { width: 270px; height: 290px; animation-delay: 0.5s; }
+.fp-ring--3 { width: 320px; height: 340px; animation-delay: 1s; }
+
+/* Progress track */
+.fp-progress-track {
+  position: relative;
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: visible;
+}
+.fp-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  border-radius: 2px;
+  transition: width 0.05s linear;
+  box-shadow: 0 0 10px var(--cyan);
+}
+.fp-progress-glow {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px; height: 10px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--cyan), 0 0 24px var(--cyan);
+  transition: left 0.05s linear;
+}
+
+/* Stats */
+.fp-stats {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+.fp-stat { display: flex; flex-direction: column; gap: 2px; }
+.fp-stat__label {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.fp-stat__val {
+  font-size: 0.8rem;
+  color: var(--cyan);
+}
+
+/* Template */
+.fp-template {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(57,255,20,0.3);
+  border-radius: var(--radius-sm);
+}
+.fp-template__label {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: rgba(57,255,20,0.7);
+  text-transform: uppercase;
+}
+.fp-template__code {
+  font-size: 0.72rem;
+  color: var(--neon-green-dim);
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+/* Actions */
+.fp-actions { display: flex; justify-content: center; gap: 12px; }

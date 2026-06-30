@@ -1,0 +1,105 @@
+/* ---- Family Tree ---- */
+.family-tree {
+  padding: 0;
+  overflow: hidden;
+}
+
+.family-tree__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+.family-tree__title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.family-tree__title-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--cyan-dim);
+  text-transform: uppercase;
+}
+
+.family-tree__legend {
+  display: flex;
+  gap: 16px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  background: rgba(0,0,0,0.2);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.legend-label {
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.family-tree__canvas {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 0;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.family-tree__svg {
+  display: block;
+  width: 100%;
+  min-width: 640px;
+  height: auto;
+  min-height: 320px;
+}
+
+/* Node hover effect via CSS (applied to SVG g) */
+.tree-node {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.tree-node:hover { transform: scale(1.04) translateY(-2px); }
+.tree-node--center { animation: pulse-dot 3s ease-in-out infinite; }
+
+/* Edge animation */
+.tree-edge {
+  stroke-dasharray: 6 3;
+  animation: edge-flow 2s linear infinite;
+}
+
+@keyframes edge-flow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -36; }
+}
+
+.family-tree__summary {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-subtle);
+}
+.relation-chip {
+  padding: 4px 10px;
+  border-radius: 12px;
+  border-width: 1px;
+  border-style: solid;
+  background: rgba(0,0,0,0.3);
+}
+
+.family-tree__empty {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

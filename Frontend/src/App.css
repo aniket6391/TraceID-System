@@ -1,0 +1,48 @@
+/* App-level layout */
+.app-shell {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-content {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+/* Ambient glow orbs */
+.ambient-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.07) 0%, transparent 70%);
+  top: -200px;
+  left: -200px;
+  animation: rotate-slow 30s linear infinite;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 128, 255, 0.07) 0%, transparent 70%);
+  bottom: -150px;
+  right: -100px;
+  animation: rotate-slow 40s linear infinite reverse;
+}
+
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.04) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate-slow 20s linear infinite;
+}

@@ -1,0 +1,128 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: transparent;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.topbar__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.topbar-btn:hover {
+  background: rgba(0, 245, 255, 0.05);
+  color: var(--text-primary);
+  border-color: rgba(0, 245, 255, 0.2);
+}
+
+.topbar-btn--active {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0, 245, 255, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 245, 255, 0.1);
+}
+
+.topbar-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 245, 255, 0.15);
+  border-radius: var(--radius-sm);
+}
+
+.topbar-select {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.topbar-select option {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.topbar-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.2;
+}
+
+.topbar-clock__time {
+  font-size: 1.1rem;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
+}
+
+.topbar-clock__date {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.topbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 24px;
+  border-left: 1px solid var(--border-subtle);
+  cursor: pointer;
+}
+
+.profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--cyan-dim);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.profile-name {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
+
+.profile-role {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.ml-4 { margin-left: 1rem; }

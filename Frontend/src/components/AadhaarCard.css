@@ -1,0 +1,210 @@
+/* ===== Aadhaar Card ===== */
+
+.aadhaar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* The physical card */
+.aadhaar-card {
+  width: 380px;
+  background: linear-gradient(160deg, #f5f2eb 0%, #ede9de 60%, #e8e4d8 100%);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.35),
+    0 1px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  font-family: Arial, 'Helvetica Neue', sans-serif;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle texture overlay */
+.aadhaar-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='rgba(0,0,0,0.03)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aadhaar-card>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Top row: flag + emblem + logo */
+.aadhaar-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 8px;
+  background: linear-gradient(180deg, #fffdf5 0%, rgba(245, 242, 235, 0) 100%);
+}
+
+.aadhaar-stripes-emblem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.aadhaar-logo-wrap {
+  flex-shrink: 0;
+}
+
+/* GOI Title */
+.aadhaar-govt-title {
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 900;
+  color: #1a1a1a;
+  letter-spacing: 0.5px;
+  padding: 2px 0 8px;
+  font-family: 'Times New Roman', Times, serif;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Body */
+.aadhaar-body-row {
+  display: flex;
+  gap: 11px;
+  padding: 0 12px 10px;
+  align-items: flex-start;
+}
+
+/* Photo */
+.aadhaar-photo {
+  width: 88px;
+  height: 102px;
+  flex-shrink: 0;
+  border: 2px solid #999;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #c8d8e8;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Details */
+.aadhaar-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.aadhaar-name {
+  font-size: 14px;
+  font-weight: 900;
+  color: #111;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.aadhaar-field-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  line-height: 1.3;
+}
+
+.aadhaar-field-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #444;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.aadhaar-field-val {
+  font-size: 10.5px;
+  color: #222;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.aadhaar-uid {
+  font-size: 19px;
+  font-weight: 900;
+  color: #111;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+.aadhaar-address-text {
+  font-size: 9.5px !important;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* Separator */
+.aadhaar-separator {
+  height: 3px;
+  background: linear-gradient(90deg, #8B0000, #b00, #8B0000);
+  margin: 0 0;
+}
+
+/* Footer */
+.aadhaar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px 10px;
+  background: linear-gradient(180deg, rgba(255, 253, 245, 0.6) 0%, rgba(230, 226, 215, 0.4) 100%);
+}
+
+.aadhaar-footer-left {
+  display: flex;
+  align-items: center;
+}
+
+.aadhaar-qr {
+  border: 1px solid #555;
+  border-radius: 3px;
+  overflow: hidden;
+  background: white;
+  padding: 2px;
+}
+
+.aadhaar-footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.aadhaar-my-aadhaar {
+  font-size: 17px;
+  font-weight: 900;
+  color: #111;
+  letter-spacing: 1px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.aadhaar-website {
+  font-size: 9px;
+  color: #555;
+  letter-spacing: 0.5px;
+}
+
+/* Download button */
+.aadhaar-download-btn {
+  width: 380px;
+  justify-content: center;
+}
+
+/* Spinner (reused from Register) */
+.spinner {
+  border-radius: 50%;
+  border-top-color: var(--blue-bright);
+  border-style: solid;
+  border-color: rgba(0, 170, 255, 0.3);
+  animation: rotate-slow 0.8s linear infinite;
+  flex-shrink: 0;
+}
